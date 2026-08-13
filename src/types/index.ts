@@ -6,6 +6,7 @@ export interface Menfess {
   from_username?: string;
   to_name: string;
   to_username?: string;
+  tag_request?: string; // requested IG tag for the card
   message: string;
   is_anonymous: boolean;
   status: MenfessStatus;
@@ -25,10 +26,3 @@ export interface CardTheme {
   borderColor: string;
 }
 
-export interface AIModerationResult {
-  isSafe: boolean;
-  category: 'safe' | 'hate_speech' | 'harassment' | 'spam' | 'inappropriate';
-  explanation: string;
-  suggestedAction: 'approved' | 'rejected' | 'pending';
-  polishedMessage?: string;
-}

@@ -128,12 +128,12 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
   const getAspectClasses = () => {
     switch (aspectRatio) {
       case '1:1':
-        return 'aspect-square max-w-[480px]';
+        return 'aspect-square max-w-[340px]';
       case '9:16':
-        return 'aspect-[9/16] max-w-[360px]';
+        return 'aspect-[9/16] max-w-[240px]';
       case '4:5':
       default:
-        return 'aspect-[4/5] max-w-[440px]';
+        return 'aspect-[4/5] max-w-[300px]';
     }
   };
 
@@ -235,17 +235,22 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
       <div className="w-full flex justify-center p-2 sm:p-4 overflow-x-auto">
         <div
           ref={cardRef}
-          className={`w-full ${getAspectClasses()} bg-gradient-to-br ${currentTheme.bgGradient} p-6 sm:p-8 rounded-[32px] shadow-lg flex flex-col justify-between relative overflow-hidden transition-all`}
-          style={{ minHeight: aspectRatio === '9:16' ? '540px' : '440px' }}
+          className={`w-full ${getAspectClasses()} bg-gradient-to-br ${currentTheme.bgGradient} p-5 rounded-[28px] shadow-lg flex flex-col justify-between relative overflow-hidden transition-all`}
+          style={{ minHeight: aspectRatio === '9:16' ? '380px' : '300px' }}
         >
           {/* Header Branding */}
           <div className="flex justify-between items-start z-10">
             <div className="flex items-center gap-2">
               <div
-                className="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs"
-                style={{ backgroundColor: currentTheme.accentColor, color: '#FFFFFF' }}
+                className="w-8 h-8 rounded-xl flex items-center justify-center overflow-hidden border"
+                style={{ backgroundColor: '#FFFFFF', borderColor: currentTheme.borderColor }}
               >
-                G
+                <img
+                  src="/logo.webp"
+                  alt="Gempala"
+                  className="w-full h-full object-contain p-0.5"
+                  crossOrigin="anonymous"
+                />
               </div>
               <div>
                 <h3 className="font-bold text-sm tracking-tight leading-none" style={{ color: currentTheme.textColor }}>
@@ -282,6 +287,11 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
               <div className="flex items-center gap-1.5 text-sm font-bold" style={{ color: currentTheme.accentColor }}>
                 <span>UNTUK:</span>
                 <span className="uppercase tracking-wide">{menfess.to_name}</span>
+                {menfess.tag_request && (
+                  <span className="text-xs font-semibold opacity-80" style={{ color: currentTheme.accentColor }}>
+                    ({menfess.tag_request})
+                  </span>
+                )}
               </div>
             </div>
 

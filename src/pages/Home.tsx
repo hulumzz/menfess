@@ -7,7 +7,6 @@ import { Textarea } from '@/components/ui/Textarea';
 import { Button } from '@/components/ui/Button';
 import { Checkbox } from '@/components/ui/Checkbox';
 import { Menfess } from '@/types';
-import { Sparkles } from 'lucide-react';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -17,6 +16,7 @@ export default function Home() {
   const [formData, setFormData] = useState({
     from: '',
     to: '',
+    tagRequest: '',
     message: '',
     isAnonymous: false,
     website: '' // honeypot
@@ -61,6 +61,12 @@ export default function Home() {
 
       if (!formData.isAnonymous && formData.from.trim()) {
         menfessData.from_name = formData.from.trim();
+      }
+
+      if (formData.tagRequest.trim()) {
+        // Normalize: strip leading @ if present then re-add
+        const tag = formData.tagRequest.trim().replace(/^@+/, '');
+        menfessData.tag_request = `@${tag}`;
       }
 
       await addDoc(collection(db, 'menfess'), menfessData);
@@ -116,6 +122,16 @@ export default function Home() {
           onChange={handleChange}
           maxLength={80}
           required
+        />
+
+        {/* TAG REQUEST */}
+        <Input
+          label="MAU TAG SIAPA DI POST-NYA? (OPSIONAL)"
+          name="tagRequest"
+          placeholder="username IG-nya siapa? biar admin bisa tag langsung 🏷️"
+          value={formData.tagRequest}
+          onChange={handleChange}
+          maxLength={50}
         />
 
         {/* MESSAGE */}
