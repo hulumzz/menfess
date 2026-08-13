@@ -1,0 +1,6 @@
+{
+  "name": "Gempala Menfess",
+  "description": "Tempat kecil untuk menyampaikan sesuatu yang ingin dikirim.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

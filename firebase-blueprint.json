@@ -1,0 +1,46 @@
+{
+  "rules": [
+    {
+      "path": "/menfess/{document=**}",
+      "methods": [
+        {
+          "method": "create",
+          "condition": "true" 
+        },
+        {
+          "method": ["read", "update", "delete"],
+          "condition": "request.auth != null"
+        }
+      ]
+    }
+  ],
+  "collections": [
+    {
+      "name": "menfess",
+      "fields": [
+        { "name": "from_name", "type": "string" },
+        { "name": "from_username", "type": "string" },
+        { "name": "to_name", "type": "string" },
+        { "name": "to_username", "type": "string" },
+        { "name": "message", "type": "string" },
+        { "name": "is_anonymous", "type": "boolean" },
+        { "name": "status", "type": "string" },
+        { "name": "admin_note", "type": "string" },
+        { "name": "created_at", "type": "timestamp" }
+      ],
+      "indexes": [
+        {
+          "fields": [
+            { "field": "status", "order": "asc" },
+            { "field": "created_at", "order": "desc" }
+          ]
+        },
+        {
+          "fields": [
+            { "field": "created_at", "order": "desc" }
+          ]
+        }
+      ]
+    }
+  ]
+}
