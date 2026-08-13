@@ -36,7 +36,7 @@ export default function Success() {
         </Button>
 
         <button
-          onClick={() => window.location.href = 'https://instagram.com/gempala'}
+          onClick={() => window.location.href = 'https://instagram.com/gempala__'}
           className="w-full py-3 text-sm font-semibold text-gempala-secondary hover:text-gempala-primary transition-colors flex items-center justify-center gap-1.5"
         >
           <Heart className="w-4 h-4 text-gempala-accent" />
