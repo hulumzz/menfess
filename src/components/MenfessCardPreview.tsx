@@ -128,13 +128,21 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
   const getAspectClasses = () => {
     switch (aspectRatio) {
       case '1:1':
-        return 'aspect-square max-w-[340px]';
+        return 'aspect-square max-w-[360px]';
       case '9:16':
-        return 'aspect-[9/16] max-w-[240px]';
+        return 'aspect-[9/16] max-w-[300px]';
       case '4:5':
       default:
-        return 'aspect-[4/5] max-w-[300px]';
+        return 'aspect-[4/5] max-w-[340px]';
     }
+  };
+
+  const getMessageFontSize = (msg: string) => {
+    if (!msg) return 'text-base sm:text-lg';
+    if (msg.length > 350) return 'text-xs leading-relaxed';
+    if (msg.length > 200) return 'text-xs sm:text-sm leading-relaxed';
+    if (msg.length > 100) return 'text-sm sm:text-base leading-relaxed';
+    return 'text-base sm:text-lg leading-relaxed';
   };
 
   const formatDate = (timestamp: any) => {
@@ -168,11 +176,10 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
                 <button
                   key={theme.id}
                   onClick={() => setSelectedThemeId(theme.id)}
-                  className={`p-2 rounded-xl text-xs font-semibold flex flex-col items-center gap-1 border transition-all ${
-                    selectedThemeId === theme.id
+                  className={`p-2 rounded-xl text-xs font-semibold flex flex-col items-center gap-1 border transition-all ${selectedThemeId === theme.id
                       ? 'border-gempala-accent ring-2 ring-gempala-accent/20 scale-105 shadow-sm'
                       : 'border-gempala-border hover:bg-gempala-bg'
-                  }`}
+                    }`}
                 >
                   <div
                     className={`w-6 h-6 rounded-full bg-gradient-to-br ${theme.bgGradient} border border-black/10 shadow-inner`}
@@ -192,11 +199,10 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
                   <button
                     key={ratio}
                     onClick={() => setAspectRatio(ratio)}
-                    className={`px-3 py-1 text-xs font-bold rounded-md transition-all ${
-                      aspectRatio === ratio
+                    className={`px-3 py-1 text-xs font-bold rounded-md transition-all ${aspectRatio === ratio
                         ? 'bg-white text-gempala-primary shadow-xs'
                         : 'text-gempala-secondary hover:text-gempala-primary'
-                    }`}
+                      }`}
                   >
                     {ratio}
                   </button>
@@ -235,14 +241,14 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
       <div className="w-full flex justify-center p-2 sm:p-4 overflow-x-auto">
         <div
           ref={cardRef}
-          className={`w-full ${getAspectClasses()} bg-gradient-to-br ${currentTheme.bgGradient} p-5 rounded-[28px] shadow-lg flex flex-col justify-between relative overflow-hidden transition-all`}
-          style={{ minHeight: aspectRatio === '9:16' ? '380px' : '300px' }}
+          className={`w-full ${getAspectClasses()} bg-gradient-to-br ${currentTheme.bgGradient} p-4 sm:p-5 rounded-[28px] shadow-lg flex flex-col justify-between relative overflow-hidden transition-all shrink-0`}
+          style={{ minHeight: aspectRatio === '9:16' ? '400px' : '320px' }}
         >
           {/* Header Branding */}
-          <div className="flex justify-between items-start z-10">
-            <div className="flex items-center gap-2">
+          <div className="flex justify-between items-start z-10 shrink-0 gap-2 min-w-0">
+            <div className="flex items-center gap-2 min-w-0">
               <div
-                className="w-8 h-8 rounded-xl flex items-center justify-center overflow-hidden border"
+                className="w-8 h-8 rounded-xl flex items-center justify-center overflow-hidden border shrink-0"
                 style={{ backgroundColor: '#FFFFFF', borderColor: currentTheme.borderColor }}
               >
                 <img
@@ -252,17 +258,17 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
                   crossOrigin="anonymous"
                 />
               </div>
-              <div>
-                <h3 className="font-bold text-sm tracking-tight leading-none" style={{ color: currentTheme.textColor }}>
+              <div className="min-w-0">
+                <h3 className="font-bold text-sm tracking-tight leading-none truncate" style={{ color: currentTheme.textColor }}>
                   GEMPALA
                 </h3>
-                <span className="text-[10px] font-semibold tracking-widest uppercase opacity-70" style={{ color: currentTheme.secondaryTextColor }}>
+                <span className="text-[10px] font-semibold tracking-widest uppercase opacity-70 block truncate" style={{ color: currentTheme.secondaryTextColor }}>
                   menfess
                 </span>
               </div>
             </div>
             <div
-              className="px-3 py-1 rounded-full text-[11px] font-semibold border"
+              className="px-2.5 py-1 rounded-full text-[10px] sm:text-[11px] font-semibold border shrink-0"
               style={{
                 backgroundColor: currentTheme.cardBg,
                 color: currentTheme.secondaryTextColor,
@@ -274,22 +280,29 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
           </div>
 
           {/* Card Body - Message */}
-          <div className="my-auto py-6 z-10 flex flex-col justify-center">
+          <div className="my-auto py-4 sm:py-5 z-10 flex flex-col justify-center min-w-0 w-full">
             {/* Sender & Recipient Headers */}
-            <div className="mb-4 space-y-1">
-              <div className="flex items-center gap-1.5 text-xs font-semibold opacity-75" style={{ color: currentTheme.secondaryTextColor }}>
-                <span>DARI:</span>
-                <span className="font-bold uppercase tracking-wider" style={{ color: currentTheme.textColor }}>
+            <div className="mb-3 sm:mb-4 space-y-1.5 min-w-0 w-full">
+              {/* DARI */}
+              <div className="flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5 text-xs font-semibold opacity-80 min-w-0 w-full" style={{ color: currentTheme.secondaryTextColor }}>
+                <span className="shrink-0 tracking-wider">DARI:</span>
+                <span className="font-bold uppercase tracking-wider min-w-0 max-w-full break-words [overflow-wrap:anywhere]" style={{ color: currentTheme.textColor }}>
                   {menfess.is_anonymous ? 'Anonim 🤫' : (menfess.from_name || 'Anonim')}
                 </span>
               </div>
 
-              <div className="flex items-center gap-1.5 text-sm font-bold" style={{ color: currentTheme.accentColor }}>
-                <span>UNTUK:</span>
-                <span className="uppercase tracking-wide">{menfess.to_name}</span>
+              {/* UNTUK & TAG REQUEST */}
+              <div className="flex flex-wrap items-baseline gap-x-1.5 gap-y-1 text-sm font-bold min-w-0 w-full" style={{ color: currentTheme.accentColor }}>
+                <span className="shrink-0 tracking-wider">UNTUK:</span>
+                <span className="uppercase tracking-wide min-w-0 max-w-full break-words [overflow-wrap:anywhere]">
+                  {menfess.to_name}
+                </span>
                 {menfess.tag_request && (
-                  <span className="text-xs font-semibold opacity-80" style={{ color: currentTheme.accentColor }}>
-                    ({menfess.tag_request})
+                  <span
+                    className="text-xs font-semibold opacity-90 min-w-0 max-w-full break-words [overflow-wrap:anywhere] inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-black/5"
+                    style={{ color: currentTheme.accentColor }}
+                  >
+                    🏷️ {menfess.tag_request}
                   </span>
                 )}
               </div>
@@ -297,7 +310,7 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
 
             {/* Main Message Box */}
             <div
-              className="p-5 sm:p-6 rounded-2xl border shadow-xs transition-all relative"
+              className="p-4 sm:p-5 rounded-2xl border shadow-xs transition-all relative min-w-0 w-full overflow-hidden"
               style={{
                 backgroundColor: currentTheme.cardBg,
                 borderColor: currentTheme.borderColor,
@@ -310,7 +323,7 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
               >
                 “
               </span>
-              <p className="text-base sm:text-lg font-medium leading-relaxed whitespace-pre-wrap break-words">
+              <p className={`font-medium whitespace-pre-wrap break-words [overflow-wrap:anywhere] ${getMessageFontSize(menfess.message)}`}>
                 {menfess.message}
               </p>
               <span
@@ -323,11 +336,11 @@ export const MenfessCardPreview: React.FC<MenfessCardPreviewProps> = ({
           </div>
 
           {/* Footer Branding & Watermark */}
-          <div className="flex justify-between items-end pt-2 border-t border-black/5 z-10">
-            <div className="text-[11px] font-medium opacity-80" style={{ color: currentTheme.secondaryTextColor }}>
+          <div className="flex justify-between items-end pt-2 border-t border-black/5 z-10 shrink-0 mt-auto min-w-0 gap-2">
+            <div className="text-[10px] sm:text-[11px] font-medium opacity-80 min-w-0 truncate" style={{ color: currentTheme.secondaryTextColor }}>
               Kirim menfess kamu di <span className="font-bold" style={{ color: currentTheme.textColor }}>gempala.menfess</span>
             </div>
-            <Sparkles className="w-4 h-4 opacity-60" style={{ color: currentTheme.accentColor }} />
+            <Sparkles className="w-4 h-4 opacity-60 shrink-0" style={{ color: currentTheme.accentColor }} />
           </div>
 
           {/* Subtle Decorative Circle */}
