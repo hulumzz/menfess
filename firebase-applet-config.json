@@ -1,12 +1,9 @@
 {
-  "projectId": "steady-array-x9v0l",
-  "appId": "1:549452227926:web:016fa3f125bc674454e2f7",
-  "apiKey": "AIzaSyA5so82CpGLnBlyDA-PMUqKQ6Wv-KhAVw8",
-  "authDomain": "steady-array-x9v0l.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-32f38a78-5699-4425-b41a-af36b5c634e6",
-  "storageBucket": "steady-array-x9v0l.firebasestorage.app",
-  "messagingSenderId": "549452227926",
-  "measurementId": "",
-  "oAuthClientId": "549452227926-ki1sjmfq8m7583s0t7eiuvvjjc15cc5m.apps.googleusercontent.com",
-  "recaptchaSiteKey": ""
+  "projectId": "menfess-8f2b7",
+  "appId": "1:876546975569:web:61c92d9bda5e3bb2771570",
+  "apiKey": "AIzaSyC4lEQfpXosKTLbpv25Tsdb_YZdBXSV5pg",
+  "authDomain": "menfess-8f2b7.firebaseapp.com",
+  "storageBucket": "menfess-8f2b7.firebasestorage.app",
+  "messagingSenderId": "876546975569",
+  "measurementId": "G-HSG2S5J296"
 }
