@@ -9,8 +9,11 @@ export default function App() {
   return (
     <div className="min-h-screen bg-[#F8F6F1] font-body text-[#171717] antialiased">
       <Routes>
+        {/* Public User Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/success" element={<Success />} />
+
+        {/* Isolated Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/admin/menfess/:id" element={<MenfessDetail />} />

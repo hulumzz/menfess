@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Quicksand:wght@300..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Quicksand:wght@300..700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -21,33 +20,22 @@ body {
   font-family: var(--font-body);
   background-color: var(--color-gempala-bg);
   color: var(--color-gempala-primary);
+  min-height: 100vh;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
 }
 
-@theme {
-  --font-display: 'Quicksand', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
-
-  --color-gempala-bg: #F8F6F1;
-  --color-gempala-surface: #FFFFFF;
-  --color-gempala-primary: #171717;
-  --color-gempala-secondary: #6F6F6F;
-  --color-gempala-border: #E7E3DB;
-  --color-gempala-accent: #FF6B5F;
-  --color-gempala-accent-soft: #FFF0ED;
-  --color-gempala-success: #3A8F6B;
-  --color-gempala-danger: #D84A4A;
+/* Custom Card Aspect Ratio Presets */
+.aspect-instagram {
+  aspect-ratio: 4 / 5;
 }
 
-body {
-  font-family: var(--font-body);
-  background-color: var(--color-gempala-bg);
-  color: var(--color-gempala-primary);
+.aspect-story {
+  aspect-ratio: 9 / 16;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-}
